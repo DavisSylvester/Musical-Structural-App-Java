@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+
+        android:id="@+id/nav_artist"
+        android:icon="@drawable/ic_rapper"
+        android:title="@string/menu_artist"
+        android:iconTint="@color/colorPrimaryDark"
+
+
+        />
+
+    <item
+
+        android:id="@+id/nav_tracks"
+        android:icon="@drawable/music_note_symbol"
+        android:title="@string/menu_tracks"
+        android:iconTint="@color/colorPrimaryDark"
+
+        />
+</menu>

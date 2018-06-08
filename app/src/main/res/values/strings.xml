@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">Musical Structural App Java</string>
+    <string name="app_name">Musical Structural App</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_tracks">Artist</string>
+    <string name="menu_artist">Songs</string>
+    <string name="home">Home</string>
+    <string name="artist_profile_picture">Artist Profile Picture</string>
+    <string name="artist_menu_title">Artists</string>
+    <string name="song_title">Songs</string>
+    <string name="title_activity_artist_detail">ArtistDetail</string>
 </resources>
