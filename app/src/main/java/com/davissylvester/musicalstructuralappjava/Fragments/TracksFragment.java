@@ -36,8 +36,8 @@ public class TracksFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_tracks, container, false);
-
+        // View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_tracks, container, false);
+        View v = inflater.inflate(R.layout.fragment_tracks, container, false);
         // ArtistAdapter.ViewHolder vh = new ArtistAdapter.ViewHolder(v);
         new ArtistAdapter.ViewHolder(v);
         setDefaults(v);

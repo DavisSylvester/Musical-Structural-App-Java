@@ -37,16 +37,18 @@ public class ArtistFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // View view = inflater.inflate(R.layout.fragment_artist, container, false);
-        View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_artist, container, false);
-        setDefaults(v);
+        //return inflater.inflate(R.layout.fragment_artist, container, false);
+        View view = inflater.inflate(R.layout.fragment_artist, container, false);
+        mRecycleView = view.findViewById(R.id.rvTracks);
+        // View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_artist, container, false);
+        setDefaults(view);
 
-        return v;
+        return view;
     }
 
     private void setDefaults(View view) {
 
-        mRecycleView = view.findViewById(R.id.rvArtist);
+        // mRecycleView = findViewById(R.id.rvTracks);
 
         mAdapter = new SongAdapter(data);
 

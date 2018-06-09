@@ -16,10 +16,6 @@ import java.util.List;
 
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
 
-    private RecyclerView mRecycleView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mlayoutManager;
-
     private List<Song> data;
     private Context context;
 
@@ -31,13 +27,12 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
 
     @NonNull
     @Override
-    public SongAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // View v = LayoutInflater.from(context).inflate(R.layout.artist_item, parent, false);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+       // View v = LayoutInflater.from(context).inflate(R.layout.artist_item, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.artist_item, parent, false);
 
-        View v = parent.findViewById(R.layout.artist_item);
 
-
-        SongAdapter.ViewHolder vh = new SongAdapter.ViewHolder(v);
+        ViewHolder vh = new SongAdapter.ViewHolder(v);
         return vh;
     }
 
