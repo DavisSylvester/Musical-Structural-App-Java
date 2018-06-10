@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.davissylvester.musicalstructuralappjava.Adapters.ArtistAdapter;
 import com.davissylvester.musicalstructuralappjava.Adapters.SongAdapter;
 import com.davissylvester.musicalstructuralappjava.DomainClasses.Song;
 import com.davissylvester.musicalstructuralappjava.R;
@@ -36,19 +35,18 @@ public class TracksFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_tracks, container, false);
+
         View v = inflater.inflate(R.layout.fragment_tracks, container, false);
-        // ArtistAdapter.ViewHolder vh = new ArtistAdapter.ViewHolder(v);
-        new ArtistAdapter.ViewHolder(v);
+
         setDefaults(v);
         return v;
     }
 
     private void setDefaults(View view) {
 
-        mRecycleView = view.findViewById(R.id.rvArtist);
+        mRecycleView = view.findViewById(R.id.rvSongs);
 
-        mAdapter = new SongAdapter(data);
+        mAdapter = new SongAdapter(data, getContext());
 
         mlayoutManager = new LinearLayoutManager(getContext());
 

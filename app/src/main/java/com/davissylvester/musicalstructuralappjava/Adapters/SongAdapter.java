@@ -20,17 +20,18 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
     private Context context;
 
 
-    public SongAdapter(List<Song> songs)  {
+    public SongAdapter(List<Song> songs, Context ctx)  {
         data = songs;
+        context = ctx;
+
     }
 
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       // View v = LayoutInflater.from(context).inflate(R.layout.artist_item, parent, false);
-        View v = LayoutInflater.from(context).inflate(R.layout.artist_item, parent, false);
 
+        View v = LayoutInflater.from(context).inflate(R.layout.artist_item, parent, false);
 
         ViewHolder vh = new SongAdapter.ViewHolder(v);
         return vh;
@@ -49,17 +50,15 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView artistImage;
-        TextView txtSongTitle;
-        TextView txtSongArtistName;
+        TextView txtArtistName;
+        TextView txtStageName;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             artistImage = itemView.findViewById(R.id.artistPic);
-            txtSongTitle = itemView.findViewById(R.id.txtSongName);
-            txtSongArtistName = itemView.findViewById(R.id.txtArtistName);
-
-
+            txtArtistName = itemView.findViewById(R.id.txtArtistName);
+            txtStageName = itemView.findViewById(R.id.txtStageName);
 
         }
 
@@ -69,14 +68,10 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
                     "drawable",
                     context.getPackageName());
 
-
             artistImage.setImageResource(resourceId);
 
-            txtSongArtistName.setText("${song.Artist.FirstName} ${song.Artist.LastName}");
-            txtSongTitle.setText(song.Name);
-
-
-
+            txtArtistName.setText("${song.Artist.FirstName} ${song.Artist.LastName}");
+            txtStageName.setText(song.Name);
         }
     }
 }

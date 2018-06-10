@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.davissylvester.musicalstructuralappjava.DomainClasses.Song;
+import com.davissylvester.musicalstructuralappjava.DomainClasses.Artist;
 import com.davissylvester.musicalstructuralappjava.R;
 
 import java.util.List;
@@ -17,11 +17,12 @@ import java.util.List;
 public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder> {
 
        private Context context;
-       private List<Song> data;
+       private List<Artist> data;
 
 
-     public ArtistAdapter(List<Song> songs)  {
-         data = songs;
+     public ArtistAdapter(List<Artist> artists, Context ctx)  {
+         data = artists;
+         context = ctx;
      }
 
     @NonNull
@@ -50,34 +51,28 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
         public static class ViewHolder extends RecyclerView.ViewHolder {
 
             ImageView artistImage;
-            TextView txtSongTitle;
-            TextView txtSongArtistName;
+            TextView txtArtistName;
+            TextView txtStageName;
 
             public ViewHolder(View itemView) {
                 super(itemView);
 
                 artistImage = itemView.findViewById(R.id.artistPic);
-                txtSongTitle = itemView.findViewById(R.id.txtSongName);
-                txtSongArtistName = itemView.findViewById(R.id.txtArtistName);
-
-
+                txtArtistName = itemView.findViewById(R.id.txtArtistName);
+                txtStageName = itemView.findViewById(R.id.txtStageName);
 
             }
 
-            private void bindSong(Song song, Context context) {
+            private void bindSong(Artist artist, Context context) {
 
-                int resourceId = context.getResources().getIdentifier(song.Artist.Photo,
+                int resourceId = context.getResources().getIdentifier(artist.Photo,
                         "drawable",
                         context.getPackageName());
 
-
                 artistImage.setImageResource(resourceId);
 
-                txtSongArtistName.setText("${song.Artist.FirstName} ${song.Artist.LastName}");
-                txtSongTitle.setText(song.Name);
-
-
-
+                txtArtistName.setText("" + artist.FirstName + " " + artist.LastName);
+                txtStageName.setText(artist.StageName);
             }
         }
 }

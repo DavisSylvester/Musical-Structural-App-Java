@@ -46,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ArtistFragment tracks = new ArtistFragment();
-        startFragment(tracks);
+        StartInitialFragment();
 
     }
 
@@ -56,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
         gls.beginTransaction()
                 .replace(R.id.csMainContainer, frag)
                 .commit();
+    }
+
+    private void StartInitialFragment() {
+        ArtistFragment tracks = new ArtistFragment();
+        startFragment(tracks);
     }
 
 

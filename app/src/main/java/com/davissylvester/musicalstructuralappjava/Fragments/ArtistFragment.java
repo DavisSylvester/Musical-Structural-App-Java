@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.davissylvester.musicalstructuralappjava.Adapters.ArtistAdapter;
 import com.davissylvester.musicalstructuralappjava.Adapters.SongAdapter;
+import com.davissylvester.musicalstructuralappjava.DomainClasses.Artist;
 import com.davissylvester.musicalstructuralappjava.DomainClasses.Song;
 import com.davissylvester.musicalstructuralappjava.R;
 import com.davissylvester.musicalstructuralappjava.Services.Data.MusicListingService;
@@ -25,11 +27,11 @@ public class ArtistFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mlayoutManager;
 
-    private List<Song> data;
+    private List<Artist> data;
 
     public ArtistFragment() {
 
-        data = new MusicListingService().Songs;
+        data = new MusicListingService().Artists;
     }
 
 
@@ -37,10 +39,9 @@ public class ArtistFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        //return inflater.inflate(R.layout.fragment_artist, container, false);
         View view = inflater.inflate(R.layout.fragment_artist, container, false);
         mRecycleView = view.findViewById(R.id.rvTracks);
-        // View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_artist, container, false);
+
         setDefaults(view);
 
         return view;
@@ -48,15 +49,14 @@ public class ArtistFragment extends Fragment {
 
     private void setDefaults(View view) {
 
-        // mRecycleView = findViewById(R.id.rvTracks);
-
-        mAdapter = new SongAdapter(data);
+        mAdapter = new ArtistAdapter(data, getContext());
 
         mlayoutManager = new LinearLayoutManager(getContext());
 
         mRecycleView.setAdapter(mAdapter);
 
         mRecycleView.hasFixedSize();
+
         mRecycleView.setLayoutManager(mlayoutManager);
 
         }

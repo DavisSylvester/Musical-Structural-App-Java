@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvArtist"
+        android:id="@+id/rvSongs"
         android:layout_width="0dp"
         android:layout_height="858dp"
         android:layout_marginBottom="8dp"
@@ -32,7 +32,7 @@
         android:text="@string/song_title"
         android:textSize="30sp"
         android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/rvArtist"
+        app:layout_constraintBottom_toTopOf="@+id/rvSongs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
