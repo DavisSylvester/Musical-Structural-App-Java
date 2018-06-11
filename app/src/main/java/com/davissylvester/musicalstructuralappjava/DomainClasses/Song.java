@@ -8,6 +8,10 @@ public class Song {
 
     public Song(String name, Artist artist, String genre, String url) {
 
+        Name = name;
+        Artist = artist;
+        Genre = genre;
+        Url = url;
     }
 
 }

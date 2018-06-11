@@ -14,7 +14,8 @@ import com.davissylvester.musicalstructuralappjava.R;
 
 import java.util.List;
 
-public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
+public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>
+        implements View.OnClickListener{
 
     private List<Song> data;
     private Context context;
@@ -31,7 +32,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(context).inflate(R.layout.artist_item, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.artist_with_song, parent, false);
 
         ViewHolder vh = new SongAdapter.ViewHolder(v);
         return vh;
@@ -47,18 +48,23 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
         return data.size();
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView artistImage;
-        TextView txtArtistName;
-        TextView txtStageName;
+        TextView txtSongName;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             artistImage = itemView.findViewById(R.id.artistPic);
-            txtArtistName = itemView.findViewById(R.id.txtArtistName);
-            txtStageName = itemView.findViewById(R.id.txtStageName);
+            txtSongName = itemView.findViewById(R.id.txtSongName);
+
 
         }
 
@@ -68,10 +74,10 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
                     "drawable",
                     context.getPackageName());
 
-            artistImage.setImageResource(resourceId);
+             artistImage.setImageResource(resourceId);
 
-            txtArtistName.setText("${song.Artist.FirstName} ${song.Artist.LastName}");
-            txtStageName.setText(song.Name);
+            txtSongName.setText("" + song.Name);
+
         }
     }
 }

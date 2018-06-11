@@ -20,6 +20,8 @@ public class MusicListingService  {
 
         List<Song> result = new ArrayList();
 
+        Song s =  new Song("Little Red Corvette", new Artist("Prince", "", "prince", "Prince"), "R&B", "https://www.youtube.com/watch?v=v0KpfrJE4zw");
+
         result.add(new Song("Little Red Corvette", new Artist("Prince", "", "prince", "Prince"), "R&B", "https://www.youtube.com/watch?v=v0KpfrJE4zw"));
         result.add(new Song("Diamonds and Pearls", new Artist("Prince", "", "prince", "Prince"), "R&B", "https://www.youtube.com/watch?v=hwUKR_9Xdns" ));
         result.add(new Song("Take Me With U", new Artist("Prince", "", "prince", "Prince"), "R&B", "https://www.youtube.com/watch?v=c80mYF6dR7s" ));

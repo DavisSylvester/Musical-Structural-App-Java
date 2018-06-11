@@ -19,6 +19,25 @@ public class Artist implements Parcelable {
 
     }
 
+    protected Artist(Parcel in) {
+        FirstName = in.readString();
+        LastName = in.readString();
+        Photo = in.readString();
+        StageName = in.readString();
+    }
+
+    public static final Creator<Artist> CREATOR = new Creator<Artist>() {
+        @Override
+        public Artist createFromParcel(Parcel in) {
+            return new Artist(in);
+        }
+
+        @Override
+        public Artist[] newArray(int size) {
+            return new Artist[size];
+        }
+    };
+
     @Override
     public int describeContents() {
         return 0;
