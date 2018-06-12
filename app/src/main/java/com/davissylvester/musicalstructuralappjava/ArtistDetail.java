@@ -13,6 +13,7 @@ import com.davissylvester.musicalstructuralappjava.DomainClasses.Artist;
 import com.davissylvester.musicalstructuralappjava.DomainClasses.Song;
 import com.davissylvester.musicalstructuralappjava.Services.Data.MusicListingService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,7 +63,16 @@ public class ArtistDetail extends AppCompatActivity {
 
     private List<Song> PopulateSongsByArtist(String stageName) {
 
-        List<Song> test =  allSongs.stream().filter( x -> x.Artist.StageName.toLowerCase().equalsIgnoreCase(stageName.toLowerCase())).collect(Collectors.toList());
+       //  List<Song> test =  allSongs.stream().filter( x -> x.Artist.StageName.toLowerCase().equalsIgnoreCase(stageName.toLowerCase())).collect(Collectors.toList());
+        List<Song> test = new ArrayList();
+
+        for (int i = 0; i < allSongs.size(); i++) {
+            Song s = allSongs.get(i);
+
+            if (s.Artist.StageName.equalsIgnoreCase(stageName))
+                test.add(s);
+        }
+
 
         return test;
     }
