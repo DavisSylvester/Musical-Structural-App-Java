@@ -7,11 +7,15 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.davissylvester.musicalstructuralappjava.Adapters.ArtistProfileAdapter;
 import com.davissylvester.musicalstructuralappjava.DomainClasses.Artist;
 import com.davissylvester.musicalstructuralappjava.DomainClasses.Song;
 import com.davissylvester.musicalstructuralappjava.Services.Data.MusicListingService;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +27,8 @@ public class ArtistDetail extends AppCompatActivity {
     private RecyclerView mRecycleView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mlayoutManager;
+    private YouTubePlayerView vv;
+    private YouTubePlayer.OnInitializedListener youTubeListener;
 
     private final static List<Song> allSongs = new MusicListingService().Songs;
 
@@ -31,7 +37,6 @@ public class ArtistDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artist_detail);
-
 
         Intent i = getIntent();
 
@@ -50,6 +55,9 @@ public class ArtistDetail extends AppCompatActivity {
     private void setDefaults() {
 
         mRecycleView = findViewById(R.id.rvSongs);
+
+        // vv = findViewById(R.id.vPlayer);
+
         mAdapter = new ArtistProfileAdapter(SongsByArtist, this);
 
         mlayoutManager = new LinearLayoutManager(this);

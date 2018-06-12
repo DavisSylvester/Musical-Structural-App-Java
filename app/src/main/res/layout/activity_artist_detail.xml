@@ -25,22 +25,9 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vvPlayer"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <VideoView
-        android:id="@+id/vPlayer"
-        android:layout_width="0dp"
-        android:layout_height="267dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgArtist" />
 
@@ -71,5 +58,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgArtist"
         app:layout_constraintTop_toBottomOf="@+id/txtStageName" />
+
+    <!--<view-->
+        <!--android:id="@+id/vPlayer"-->
+        <!--class="com.google.android.youtube.player.YouTubePlayerView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="213dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/imgArtist" />-->
 
 </android.support.constraint.ConstraintLayout>

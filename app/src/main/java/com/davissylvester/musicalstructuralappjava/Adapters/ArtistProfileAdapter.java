@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.VideoView;
-
 import com.davissylvester.musicalstructuralappjava.DomainClasses.Song;
 import com.davissylvester.musicalstructuralappjava.R;
 
@@ -18,10 +16,17 @@ public class ArtistProfileAdapter extends RecyclerView.Adapter<ArtistProfileAdap
 
     private List<Song> songs;
     private final Context context;
+//    private final YouTubePlayerView videoPlayer;
+//    private final YouTubePlayer.OnInitializedListener youtubeListener;
+
+
+    //, YouTubePlayerView vv, YouTubePlayer.OnInitializedListener ytListener
 
     public ArtistProfileAdapter(List<Song> songs, Context context) {
         this.songs = songs;
         this.context = context;
+//        videoPlayer = vv;
+//        youtubeListener = ytListener;
     }
 
     @NonNull
@@ -47,13 +52,14 @@ public class ArtistProfileAdapter extends RecyclerView.Adapter<ArtistProfileAdap
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtSongName;
-        // VideoView videoPlayer;
-
+//        YouTubePlayerView videoPlayer;
+//        YouTubePlayer.OnInitializedListener youtubeListener;
 
         public ViewHolder(View itemView) {
             super(itemView);
             txtSongName = itemView.findViewById(R.id.txtSongName);
-            //videoPlayer = itemView.findViewById(R.id.vPlayer);
+//            videoPlayer = player;
+//            youtubeListener = listener;
 
         }
 
@@ -64,8 +70,21 @@ public class ArtistProfileAdapter extends RecyclerView.Adapter<ArtistProfileAdap
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                        //videoPlayer.setVideoPath(song.Url);
-                        //videoPlayer.start();
+
+//                    youtubeListener = new YouTubePlayer.OnInitializedListener() {
+//                        @Override
+//                        public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+//
+//                            youTubePlayer.loadVideo("vuaj8ExTYOM");
+//                        }
+//
+//                        @Override
+//                        public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+//
+//                        }
+//                    };
+//
+//                    videoPlayer.initialize(AppConfig.getAPI_KEY(), youtubeListener);
                 }
             });
 
