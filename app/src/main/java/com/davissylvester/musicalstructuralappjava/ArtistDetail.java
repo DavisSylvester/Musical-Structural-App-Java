@@ -7,19 +7,20 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.davissylvester.musicalstructuralappjava.Adapters.ArtistProfileAdapter;
+import com.davissylvester.musicalstructuralappjava.DomainClasses.AppConfig;
 import com.davissylvester.musicalstructuralappjava.DomainClasses.Artist;
 import com.davissylvester.musicalstructuralappjava.DomainClasses.Song;
 import com.davissylvester.musicalstructuralappjava.Services.Data.MusicListingService;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerView;
+import com.google.android.youtube.player.YouTubePlayerFragment;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 public class ArtistDetail extends AppCompatActivity {
 
@@ -27,8 +28,9 @@ public class ArtistDetail extends AppCompatActivity {
     private RecyclerView mRecycleView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mlayoutManager;
-    private YouTubePlayerView vv;
+    private YouTubePlayerSupportFragment vv;
     private YouTubePlayer.OnInitializedListener youTubeListener;
+    private YouTubePlayer player;
 
     private final static List<Song> allSongs = new MusicListingService().Songs;
 
@@ -50,13 +52,19 @@ public class ArtistDetail extends AppCompatActivity {
         setDefaults();
 
 
+
+
     }
 
     private void setDefaults() {
 
         mRecycleView = findViewById(R.id.rvSongs);
 
-        // vv = findViewById(R.id.vPlayer);
+        vv = (YouTubePlayerSupportFragment) getSupportFragmentManager().findFragmentById(R.id.vPlayer);
+
+
+
+        youTubePlayerInit();
 
         mAdapter = new ArtistProfileAdapter(SongsByArtist, this);
 
@@ -71,18 +79,38 @@ public class ArtistDetail extends AppCompatActivity {
 
     private List<Song> PopulateSongsByArtist(String stageName) {
 
-       //  List<Song> test =  allSongs.stream().filter( x -> x.Artist.StageName.toLowerCase().equalsIgnoreCase(stageName.toLowerCase())).collect(Collectors.toList());
-        List<Song> test = new ArrayList();
-
-        for (int i = 0; i < allSongs.size(); i++) {
-            Song s = allSongs.get(i);
-
-            if (s.Artist.StageName.equalsIgnoreCase(stageName))
-                test.add(s);
-        }
+         List<Song> test =  allSongs.stream().filter( x -> x.Artist.StageName.toLowerCase().equalsIgnoreCase(stageName.toLowerCase())).collect(Collectors.toList());
+//        List<Song> test = new ArrayList();
+//
+//        for (int i = 0; i < allSongs.size(); i++) {
+//            Song s = allSongs.get(i);
+//
+//            if (s.Artist.StageName.equalsIgnoreCase(stageName))
+//                test.add(s);
+//        }
 
 
         return test;
+    }
+
+    private void youTubePlayerInit() {
+
+        youTubeListener = new YouTubePlayer.OnInitializedListener() {
+                        @Override
+                        public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+
+//                            youTubePlayer.loadVideo("vuaj8ExTYOM");
+                            player = youTubePlayer;
+                            player.loadVideo("vuaj8ExTYOM");
+                        }
+
+                        @Override
+                        public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
+                        }
+                    };
+
+                    vv.initialize(AppConfig.getAPI_KEY(), youTubeListener);
     }
 
     private void BindToView(Artist artist) {
