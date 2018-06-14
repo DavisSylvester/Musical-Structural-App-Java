@@ -7,8 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.davissylvester.musicalstructuralappjava.ArtistDetail;
+import com.davissylvester.musicalstructuralappjava.DomainClasses.AppConfig;
 import com.davissylvester.musicalstructuralappjava.DomainClasses.Song;
 import com.davissylvester.musicalstructuralappjava.R;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerFragment;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 
 import java.util.List;
 
@@ -16,22 +23,19 @@ public class ArtistProfileAdapter extends RecyclerView.Adapter<ArtistProfileAdap
 
     private List<Song> songs;
     private final Context context;
-//    private final YouTubePlayerView videoPlayer;
-//    private final YouTubePlayer.OnInitializedListener youtubeListener;
+    private ArtistDetail artistDetail;
 
-
-    //, YouTubePlayerView vv, YouTubePlayer.OnInitializedListener ytListener
-
-    public ArtistProfileAdapter(List<Song> songs, Context context) {
+    public ArtistProfileAdapter(List<Song> songs, Context context, ArtistDetail artistDetail) {
         this.songs = songs;
         this.context = context;
-//        videoPlayer = vv;
-//        youtubeListener = ytListener;
+        this.artistDetail = artistDetail;
+
     }
 
     @NonNull
     @Override
-    public ArtistProfileAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ArtistProfileAdapter.ViewHolder onCreateViewHolder(
+            @NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.profile_artist_song_item, parent, false);
 
         ViewHolder vh = new ArtistProfileAdapter.ViewHolder(v);
@@ -40,7 +44,7 @@ public class ArtistProfileAdapter extends RecyclerView.Adapter<ArtistProfileAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bindSong(songs.get(position), context);
+        holder.bindSong(songs.get(position), context, artistDetail);
     }
 
     @Override
@@ -52,43 +56,29 @@ public class ArtistProfileAdapter extends RecyclerView.Adapter<ArtistProfileAdap
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtSongName;
-//        YouTubePlayerView videoPlayer;
-//        YouTubePlayer.OnInitializedListener youtubeListener;
+        ArtistDetail artistDetail;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
             txtSongName = itemView.findViewById(R.id.txtSongName);
-//            videoPlayer = player;
-//            youtubeListener = listener;
 
         }
 
-        private void bindSong(Song song, Context context) {
+        private void bindSong(Song song, Context context, ArtistDetail artistDetail) {
 
             txtSongName.setText(song.Name);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-//                    youtubeListener = new YouTubePlayer.OnInitializedListener() {
-//                        @Override
-//                        public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-//
-//                            youTubePlayer.loadVideo("vuaj8ExTYOM");
-//                        }
-//
-//                        @Override
-//                        public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-//
-//                        }
-//                    };
-//
-//                    videoPlayer.initialize(AppConfig.getAPI_KEY(), youtubeListener);
+                    artistDetail.PlayVideo(song.Url);
                 }
             });
 
 
         }
+
+
     }
 }

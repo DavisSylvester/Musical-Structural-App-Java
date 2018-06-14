@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +16,6 @@ import com.davissylvester.musicalstructuralappjava.DomainClasses.Song;
 import com.davissylvester.musicalstructuralappjava.Services.Data.MusicListingService;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerFragment;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 
 import java.util.List;
@@ -31,6 +31,7 @@ public class ArtistDetail extends AppCompatActivity {
     private YouTubePlayerSupportFragment vv;
     private YouTubePlayer.OnInitializedListener youTubeListener;
     private YouTubePlayer player;
+    private ArtistDetail artistDetail;
 
     private final static List<Song> allSongs = new MusicListingService().Songs;
 
@@ -42,17 +43,14 @@ public class ArtistDetail extends AppCompatActivity {
 
         Intent i = getIntent();
 
+        artistDetail = this;
+
         Artist artist = i.getParcelableExtra("DATA_ARTIST");
         BindToView(artist);
-
-        Log.d("FINDME", artist.toString());
 
         this.SongsByArtist = PopulateSongsByArtist(artist.StageName);
 
         setDefaults();
-
-
-
 
     }
 
@@ -60,13 +58,12 @@ public class ArtistDetail extends AppCompatActivity {
 
         mRecycleView = findViewById(R.id.rvSongs);
 
-        vv = (YouTubePlayerSupportFragment) getSupportFragmentManager().findFragmentById(R.id.vPlayer);
-
-
+        vv = (YouTubePlayerSupportFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.vPlayer);
 
         youTubePlayerInit();
 
-        mAdapter = new ArtistProfileAdapter(SongsByArtist, this);
+        mAdapter = new ArtistProfileAdapter(SongsByArtist, this, artistDetail);
 
         mlayoutManager = new LinearLayoutManager(this);
 
@@ -79,33 +76,27 @@ public class ArtistDetail extends AppCompatActivity {
 
     private List<Song> PopulateSongsByArtist(String stageName) {
 
-         List<Song> test =  allSongs.stream().filter( x -> x.Artist.StageName.toLowerCase().equalsIgnoreCase(stageName.toLowerCase())).collect(Collectors.toList());
-//        List<Song> test = new ArrayList();
-//
-//        for (int i = 0; i < allSongs.size(); i++) {
-//            Song s = allSongs.get(i);
-//
-//            if (s.Artist.StageName.equalsIgnoreCase(stageName))
-//                test.add(s);
-//        }
+         List<Song> songs =  allSongs.stream().filter( x -> x.Artist.StageName.toLowerCase()
+                 .equalsIgnoreCase(stageName.toLowerCase())).collect(Collectors.toList());
 
-
-        return test;
+        return songs;
     }
 
     private void youTubePlayerInit() {
 
         youTubeListener = new YouTubePlayer.OnInitializedListener() {
                         @Override
-                        public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-
-//                            youTubePlayer.loadVideo("vuaj8ExTYOM");
+                        public void onInitializationSuccess(YouTubePlayer.Provider provider,
+                                                            YouTubePlayer youTubePlayer, boolean b)
+                        {
                             player = youTubePlayer;
-                            player.loadVideo("vuaj8ExTYOM");
+
                         }
 
                         @Override
-                        public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                        public void onInitializationFailure(
+                                YouTubePlayer.Provider provider,
+                                YouTubeInitializationResult youTubeInitializationResult) {
 
                         }
                     };
@@ -129,6 +120,15 @@ public class ArtistDetail extends AppCompatActivity {
         artistName.setText(artist.FirstName + "" + artist.LastName);
 
 
+    }
+
+    public void PlayVideo(String songUrl) {
+
+        player.loadVideo(songUrl);
+    }
+
+    public void goBack(View view) {
+        this.finish();
     }
 
 }
