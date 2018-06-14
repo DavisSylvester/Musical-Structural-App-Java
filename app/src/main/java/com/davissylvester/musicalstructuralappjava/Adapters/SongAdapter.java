@@ -20,13 +20,11 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>
     private List<Song> data;
     private Context context;
 
-
     public SongAdapter(List<Song> songs, Context ctx)  {
         data = songs;
         context = ctx;
 
     }
-
 
     @NonNull
     @Override
@@ -58,13 +56,11 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder>
         ImageView artistImage;
         TextView txtSongName;
 
-
         public ViewHolder(View itemView) {
             super(itemView);
 
             artistImage = itemView.findViewById(R.id.artistPic);
             txtSongName = itemView.findViewById(R.id.txtSongName);
-
 
         }
 
